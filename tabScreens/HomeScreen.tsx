@@ -20,7 +20,14 @@ export function HomeScreen() {
       <Text>Hemma</Text>
       <FlatList
         data={beers}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => (
+          <Text>
+            [{item.title}
+            {item.abv}
+            {item.description}]{item.ibu}
+            {item.id}
+          </Text>
+        )}
       />
       <Button onPress={() => RootStackNav} title="To details" />
     </View>
