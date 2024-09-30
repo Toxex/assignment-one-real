@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { HomeScreen } from "./tabScreens/HomeScreen";
 
 type RootStackParamList = {
   Home: undefined;
@@ -9,14 +9,6 @@ type RootStackParamList = {
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
-
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Hemma</Text>
-    </View>
-  );
-}
 
 export default function App() {
   return (
@@ -28,12 +20,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
