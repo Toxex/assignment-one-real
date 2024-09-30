@@ -6,10 +6,11 @@ import {
   View,
 } from "react-native";
 import { RootStackParamList } from "../navigators/tabnavigator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { beers } from "../mockdata/data";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Audio } from "expo-av";
 
 export type Item = {
   id: string;
