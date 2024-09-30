@@ -1,8 +1,16 @@
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
-import { DetailsScreen } from "./DetailsScreen";
-import RootStackNav from "../navigators/tabnavigator";
+import {
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { RootStackParamList } from "../navigators/tabnavigator";
 import { useState } from "react";
 import { beers } from "../mockdata/data";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Item = {
   id: string;
@@ -14,22 +22,29 @@ type Item = {
 
 export function HomeScreen() {
   const [items, setItems] = useState<Item[]>([]);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const handleOnPress = (beer: Item) => {
+    navigation.navigate("Details", { beer });
+  };
 
   return (
     <View style={styles.container}>
       <Text>Hemma</Text>
       <FlatList
         data={beers}
+        keyExtractor={(beer) => beer.id}
         renderItem={({ item }) => (
-          <Text>
-            [{item.title}
-            {item.abv}
-            {item.description}]{item.ibu}
-            {item.id}
-          </Text>
+          <TouchableOpacity onPress={() => handleOnPress(item)}>
+            <Text style={styles.container}>{item.title}</Text>
+          </TouchableOpacity>
         )}
       />
-      <Button onPress={() => RootStackNav} title="To details" />
+      <Button
+        onPress={(data) => navigation.navigate("Details")}
+        title="To details"
+      />
     </View>
   );
 }

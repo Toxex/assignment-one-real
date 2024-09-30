@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
+type;
+
 export function DetailsScreen() {
   return (
     <View style={styles.container}>
