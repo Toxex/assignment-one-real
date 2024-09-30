@@ -1,2 +1,2 @@
-React native: StyleSheet, Text, View
+React native: FlatList, StyleSheet, Text, TouchableOpacity, View,
 Expo:

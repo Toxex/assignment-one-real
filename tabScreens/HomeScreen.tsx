@@ -1,5 +1,4 @@
 import {
-  Button,
   FlatList,
   StyleSheet,
   Text,
@@ -12,7 +11,7 @@ import { beers } from "../mockdata/data";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-type Item = {
+export type Item = {
   id: string;
   title: string;
   ibu: number;
@@ -31,19 +30,14 @@ export function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Hemma</Text>
       <FlatList
         data={beers}
         keyExtractor={(beer) => beer.id}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handleOnPress(item)}>
-            <Text style={styles.container}>{item.title}</Text>
+            <Text style={styles.beer}>{item.title}</Text>
           </TouchableOpacity>
         )}
-      />
-      <Button
-        onPress={(data) => navigation.navigate("Details")}
-        title="To details"
       />
     </View>
   );
@@ -55,5 +49,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  beer: {
+    fontSize: 20,
+    marginTop: 15,
   },
 });

@@ -1,11 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
+import { RootStackParamList } from "../navigators/tabnavigator";
+import { RouteProp } from "@react-navigation/native";
 
-type;
+type DetailsScreenRouteProp = RouteProp<RootStackParamList, "Details">;
 
-export function DetailsScreen() {
+type DetailsScreenProps = {
+  route: DetailsScreenRouteProp;
+};
+
+export function DetailsScreen({ route }: DetailsScreenProps) {
+  const { beer } = route.params;
   return (
     <View style={styles.container}>
-      <Text>Details</Text>
+      <Text style={styles.beer}>{beer.title}</Text>
+      <Text style={styles.beer}>IBU: {beer.ibu}</Text>
+      <Text style={styles.beer}>ABV: {beer.abv}%</Text>
+      <Text style={styles.description}>{beer.description}</Text>
     </View>
   );
 }
@@ -16,6 +26,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    fontSize: 32,
+  },
+  beer: {
+    fontSize: 20,
+    margin: 5,
+  },
+  description: {
+    fontSize: 15,
+    marginTop: 15,
   },
 });
 
