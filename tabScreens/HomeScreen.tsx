@@ -13,27 +13,29 @@ import { Audio } from "expo-av";
 
 export type Item = {
   id: string;
-  letter: any;
+  number: number;
   name: string;
   description: string;
-  aroma: string;
-  appearance: string;
-  flavor: string;
-  texture: string;
-  examples: string;
-  ogMin: any;
-  ogMax: any;
-  fgMin: any;
-  fgMax: any;
-  ebcMax: any;
-  ebcMin: any;
-  ibuMax: any;
-  ibuMin: any;
-  abvMin: any;
-  abvMax: any;
-  summary: any;
-  category: any;
-  styles: [];
+  styles: {
+    letter: string;
+    aroma: string;
+    appearance: string;
+    flavor: string;
+    texture: string;
+    examples: string;
+    ogMin: string; // DESSA VERKAR VARA OBJEKT INUTI ITEM (huvudklasser), OCH FINNAS I ARAY SOM HETER STYLES
+    ogMax: string;
+    fgMin: string;
+    fgMax: string;
+    ebcMax: string;
+    ebcMin: string;
+    ibuMax: string;
+    ibuMin: string;
+    abvMin: string;
+    abvMax: string;
+    summary: string;
+    category: string;
+  }[];
 };
 
 export function HomeScreen() {
@@ -42,17 +44,20 @@ export function HomeScreen() {
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
-    fetch("https://styles.shbf.se/json/2013/styles")
+    fetch("https://styles.shbf.se/json/2020/styles")
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Fetched Data:", data);
+        // console.log(JSON.stringify(data, null, 4));
 
         setItems(data);
-        console.log(items);
+        // data.forEach((item: Item) => {
+        //   console.log(`Styles for ${item.name}:`, item.styles);
+        // });
       });
   }, []);
 
   const handleOnPress = (beer: Item) => {
+    console.log("Navigating to Details with beer:", beer);
     navigation.navigate("Details", { beer });
   };
 
@@ -62,17 +67,18 @@ export function HomeScreen() {
         data={items}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleOnPress(item)}>
+          <View>
             <Text style={styles.beer}>
-              category:{item.name}
-              {/* {item.styles}] */}
+              {item.number} {item.name}
             </Text>
-            <Text></Text>
-            {/* <Text>Description: {item.description}</Text> */}
-          </TouchableOpacity>
+            {item.styles.map((style: any, index: number) => (
+              <TouchableOpacity key={index} onPress={() => handleOnPress(item)}>
+                <Text style={styles.beer}>{style.name} </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         )}
       />
-      {/* <Text>fuck you!</Text> */}
     </View>
   );
 }
