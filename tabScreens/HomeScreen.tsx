@@ -7,17 +7,33 @@ import {
 } from "react-native";
 import { RootStackParamList } from "../navigators/tabnavigator";
 import { useEffect, useState } from "react";
-import { beers } from "../mockdata/data";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Audio } from "expo-av";
 
 export type Item = {
   id: string;
-  title: string;
-  ibu: number;
-  abv: number;
+  letter: any;
+  name: string;
   description: string;
+  aroma: string;
+  appearance: string;
+  flavor: string;
+  texture: string;
+  examples: string;
+  ogMin: any;
+  ogMax: any;
+  fgMin: any;
+  fgMax: any;
+  ebcMax: any;
+  ebcMin: any;
+  ibuMax: any;
+  ibuMin: any;
+  abvMin: any;
+  abvMax: any;
+  summary: any;
+  category: any;
+  styles: [];
 };
 
 export function HomeScreen() {
@@ -29,8 +45,10 @@ export function HomeScreen() {
     fetch("https://styles.shbf.se/json/2013/styles")
       .then((response) => response.json())
       .then((data) => {
-        console.log("fetched data", data);
+        // console.log("Fetched Data:", data);
+
         setItems(data);
+        console.log(items);
       });
   }, []);
 
@@ -42,10 +60,15 @@ export function HomeScreen() {
     <View style={styles.container}>
       <FlatList
         data={items}
-        keyExtractor={(beer) => beer.id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handleOnPress(item)}>
-            <Text style={styles.beer}>{item.title}</Text>
+            <Text style={styles.beer}>
+              category:{item.name}
+              {/* {item.styles}] */}
+            </Text>
+            <Text></Text>
+            {/* <Text>Description: {item.description}</Text> */}
           </TouchableOpacity>
         )}
       />
