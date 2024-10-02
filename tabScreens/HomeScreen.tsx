@@ -25,6 +25,15 @@ export function HomeScreen() {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  useEffect(() => {
+    fetch("https://styles.shbf.se/json/2013/styles")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("fetched data", data);
+        setItems(data);
+      });
+  }, []);
+
   const handleOnPress = (beer: Item) => {
     navigation.navigate("Details", { beer });
   };
@@ -32,7 +41,7 @@ export function HomeScreen() {
   return (
     <View style={styles.container}>
       <FlatList
-        data={beers}
+        data={items}
         keyExtractor={(beer) => beer.id}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => handleOnPress(item)}>
@@ -40,6 +49,7 @@ export function HomeScreen() {
           </TouchableOpacity>
         )}
       />
+      {/* <Text>fuck you!</Text> */}
     </View>
   );
 }
