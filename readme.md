@@ -1,2 +1,2 @@
 React native: FlatList, StyleSheet, Text, TouchableOpacity, View,
-Expo: useKeepAwake, Audio
+Expo: KeepAwake, Audio, SafeAreaContext (SafeAreaView enbart),
