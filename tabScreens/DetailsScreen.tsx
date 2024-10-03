@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { RootStackParamList } from "../navigators/tabnavigator";
 import { RouteProp } from "@react-navigation/native";
 
@@ -17,25 +17,24 @@ export function DetailsScreen({ route }: DetailsScreenProps) {
       <Text style={styles.description}>Description: {beer.description}</Text>
 
       {beer.styles.map((style) => (
-        <View>
-          <Text style={styles.beer}>Category: {beer.category}</Text>
-          <Text style={styles.beer}>Letter: {beer.letter}</Text>
-          <Text style={styles.beer}>OG Min: {beer.ogMin}</Text>
-          <Text style={styles.beer}>OG Max: {beer.ogMax}</Text>
-          <Text style={styles.beer}>FG Min: {beer.fgMin}</Text>
-          <Text style={styles.beer}>FG Max: {beer.fgMax}</Text>
-          <Text style={styles.beer}>IBU Min: {beer.ibuMin}</Text>
-          <Text style={styles.beer}>IBU Max: {beer.ibuMax}</Text>
-          <Text style={styles.beer}>ABV Min: {beer.abvMin}%</Text>
-          <Text style={styles.beer}>ABV Max: {beer.abvMax}%</Text>
-          <Text style={styles.beer}>EBC Min: {beer.ebcMin}</Text>
-          <Text style={styles.beer}>EBC Max: {beer.ebcMax}</Text>
-          <Text style={styles.beer}>Aroma: {beer.aroma}</Text>
-          <Text style={styles.beer}>Appearance: {beer.appearance}</Text>
-          <Text style={styles.beer}>Flavor: {beer.flavor}</Text>
-          <Text style={styles.beer}>Texture: {beer.texture}</Text>
-          <Text style={styles.beer}>Examples: {beer.examples}</Text>
-          <Text style={styles.description}>Summary: {beer.summary}</Text>
+        <View key={style.letter}>
+          <Text style={styles.beer}>Letter: {style.letter}</Text>
+          <Text style={styles.beer}>OG Min: {style.ogMin}</Text>
+          <Text style={styles.beer}>OG Max: {style.ogMax}</Text>
+          <Text style={styles.beer}>FG Min: {style.fgMin}</Text>
+          <Text style={styles.beer}>FG Max: {style.fgMax}</Text>
+          <Text style={styles.beer}>IBU Min: {style.ibuMin}</Text>
+          <Text style={styles.beer}>IBU Max: {style.ibuMax}</Text>
+          <Text style={styles.beer}>ABV Min: {style.abvMin}%</Text>
+          <Text style={styles.beer}>ABV Max: {style.abvMax}%</Text>
+          <Text style={styles.beer}>EBC Min: {style.ebcMin}</Text>
+          <Text style={styles.beer}>EBC Max: {style.ebcMax}</Text>
+          <Text style={styles.beer}>Aroma: {style.aroma}</Text>
+          <Text style={styles.beer}>Appearance: {style.appearance}</Text>
+          <Text style={styles.beer}>Flavor: {style.flavor}</Text>
+          <Text style={styles.beer}>Texture: {style.texture}</Text>
+          <Text style={styles.beer}>Examples: {style.examples}</Text>
+          <Text style={styles.description}>Summary: {style.summary}</Text>
         </View>
       ))}
     </View>

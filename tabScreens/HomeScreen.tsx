@@ -34,7 +34,6 @@ export type Item = {
     abvMin: string;
     abvMax: string;
     summary: string;
-    category: string;
   }[];
 };
 
@@ -56,8 +55,7 @@ export function HomeScreen() {
       });
   }, []);
 
-  const handleOnPress = (beer: Item) => {
-    console.log("Navigating to Details with beer:", beer);
+  const handleOnPress = (beer: Item, style: Item) => {
     navigation.navigate("Details", { beer });
   };
 
@@ -68,12 +66,17 @@ export function HomeScreen() {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View>
-            <Text style={styles.beer}>
-              {item.number} {item.name}
+            <Text style={styles.categories}>
+              {item.number}. {item.name}
             </Text>
-            {item.styles.map((style: any, index: number) => (
-              <TouchableOpacity key={index} onPress={() => handleOnPress(item)}>
-                <Text style={styles.beer}>{style.name} </Text>
+            {item.styles.map((style: any, id: number) => (
+              <TouchableOpacity
+                key={id}
+                onPress={() => handleOnPress(item, style)}
+              >
+                <Text style={styles.underCategories}>
+                  {style.letter}. {style.name}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -90,8 +93,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  beer: {
+  categories: {
     fontSize: 20,
     marginTop: 15,
+  },
+  underCategories: {
+    fontSize: 15,
   },
 });
