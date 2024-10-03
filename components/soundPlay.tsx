@@ -2,13 +2,13 @@ import { Audio } from "expo-av";
 import { useEffect, useState } from "react";
 import { Button, View } from "react-native";
 
-export function soundPlay() {
+export function SoundPlay() {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   async function playSound() {
     console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync(
-      require("./assets/Hello.mp3")
+      require("../assets/Hello.mp3")
     );
     setSound(sound);
 
@@ -25,9 +25,5 @@ export function soundPlay() {
       : undefined;
   }, [sound]);
 
-  return (
-    <View>
-      <Button title="Play Sound" onPress={playSound} />
-    </View>
-  );
+  return playSound();
 }

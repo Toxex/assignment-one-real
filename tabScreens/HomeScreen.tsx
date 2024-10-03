@@ -9,9 +9,8 @@ import { RootStackParamList } from "../navigators/tabnavigator";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { soundPlay } from "../components/soundPlay";
-import { SafeView } from "../components/safeView";
-import { imageThing } from "../components/imageThing";
+import { ImageThing } from "../components/ImageThing";
+import { SoundPlay } from "../components/SoundPlay";
 
 export type Item = {
   id: string;
@@ -25,7 +24,7 @@ export type Item = {
     flavor: string;
     texture: string;
     examples: string;
-    ogMin: string; // DESSA VERKAR VARA OBJEKT INUTI ITEM (huvudklasser), OCH FINNAS I ARAY SOM HETER STYLES
+    ogMin: string;
     ogMax: string;
     fgMin: string;
     fgMax: string;
@@ -59,36 +58,37 @@ export function HomeScreen() {
 
   const handleOnPress = (beer: Item, style: Item) => {
     navigation.navigate("Details", { beer });
-    soundPlay(); //for testing purposes
   };
 
   return (
-    <SafeView>
-      <View style={styles.container}>
-        <FlatList
-          data={items}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View>
-              <Text style={styles.categories}>
-                {item.number}. {item.name}
-              </Text>
-              {item.styles.map((style: any, id: number) => (
-                <TouchableOpacity
-                  key={id}
-                  onPress={() => handleOnPress(item, style)}
-                >
-                  <Text style={styles.underCategories}>
-                    {style.letter}. {style.name}
-                  </Text>
-                </TouchableOpacity>
-              ))}
+    // <SafeView>
+    <View style={styles.container}>
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View>
+            <Text style={styles.categories}>
+              {item.number}. {item.name}
+            </Text>
+            {item.styles.map((style: any, id: number) => (
+              <TouchableOpacity
+                key={id}
+                onPress={() => handleOnPress(item, style)}
+              >
+                <Text style={styles.underCategories}>
+                  {style.letter}. {style.name}
+                </Text>
+              </TouchableOpacity>
+            ))}
+            <View style={{ width: "100%", height: 220 }}>
+              <ImageThing />
             </View>
-          )}
-        />
-      </View>
-      {imageThing()}
-    </SafeView>
+          </View>
+        )}
+      />
+    </View>
+    /* </SafeView> */
   );
 }
 
