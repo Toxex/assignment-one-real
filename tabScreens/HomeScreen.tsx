@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageThing } from "../components/ImageThing";
 import { SoundPlay } from "../components/SoundPlay";
+import { SafeView } from "../components/SafeView";
 
 export type Item = {
   id: string;
@@ -61,34 +62,34 @@ export function HomeScreen() {
   };
 
   return (
-    // <SafeView>
-    <View style={styles.container}>
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View>
-            <Text style={styles.categories}>
-              {item.number}. {item.name}
-            </Text>
-            {item.styles.map((style: any, id: number) => (
-              <TouchableOpacity
-                key={id}
-                onPress={() => handleOnPress(item, style)}
-              >
-                <Text style={styles.underCategories}>
-                  {style.letter}. {style.name}
-                </Text>
-              </TouchableOpacity>
-            ))}
-            <View style={{ width: "100%", height: 220 }}>
-              <ImageThing />
+    <SafeView>
+      <View style={styles.container}>
+        <FlatList
+          data={items}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View>
+              <Text style={styles.categories}>
+                {item.number}. {item.name}
+              </Text>
+              {item.styles.map((style: any, id: number) => (
+                <TouchableOpacity
+                  key={id}
+                  onPress={() => handleOnPress(item, style)}
+                >
+                  <Text style={styles.underCategories}>
+                    {style.letter}. {style.name}
+                  </Text>
+                </TouchableOpacity>
+              ))}
             </View>
-          </View>
-        )}
-      />
-    </View>
-    /* </SafeView> */
+          )}
+        />
+        <View style={{ width: "100%", height: 250 }}>
+          <ImageThing />
+        </View>
+      </View>
+    </SafeView>
   );
 }
 

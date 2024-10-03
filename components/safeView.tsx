@@ -5,5 +5,5 @@ interface SafeViewProps {
 }
 
 export function SafeView({ children }: SafeViewProps) {
-  return <SafeAreaView>{children}</SafeAreaView>;
+  return <SafeAreaView style={{ flex: 1 }}>{children}</SafeAreaView>;
 }
