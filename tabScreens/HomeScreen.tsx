@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Audio } from "expo-av";
+import { soundPlay } from "../components/soundPlay";
 
 export type Item = {
   id: string;
@@ -57,6 +58,7 @@ export function HomeScreen() {
 
   const handleOnPress = (beer: Item, style: Item) => {
     navigation.navigate("Details", { beer });
+    soundPlay(); //for testing purposes
   };
 
   return (
