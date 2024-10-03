@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ImageThing } from "../components/ImageThing";
-import { SoundPlay } from "../components/SoundPlay";
 import { SafeView } from "../components/SafeView";
 
 export type Item = {
@@ -19,6 +18,7 @@ export type Item = {
   name: string;
   description: string;
   styles: {
+    name: string;
     letter: string;
     aroma: string;
     appearance: string;
@@ -58,7 +58,7 @@ export function HomeScreen() {
   }, []);
 
   const handleOnPress = (beer: Item, style: Item) => {
-    navigation.navigate("Details", { beer });
+    navigation.navigate("Information", { beer });
   };
 
   return (

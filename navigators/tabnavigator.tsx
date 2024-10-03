@@ -3,8 +3,8 @@ import { HomeScreen, Item } from "../tabScreens/HomeScreen";
 import { DetailsScreen } from "../tabScreens/DetailsScreen";
 
 export type RootStackParamList = {
-  Home: undefined;
-  Details: { beer: Item };
+  Ölstilar: undefined;
+  Information: { beer: Item };
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -12,8 +12,8 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export default function RootStackNav() {
   return (
     <RootStack.Navigator>
-      <RootStack.Screen name="Home" component={HomeScreen} />
-      <RootStack.Screen name="Details" component={DetailsScreen} />
+      <RootStack.Screen name="Ölstilar" component={HomeScreen} />
+      <RootStack.Screen name="Information" component={DetailsScreen} />
     </RootStack.Navigator>
   );
 }

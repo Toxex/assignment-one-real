@@ -1,8 +1,7 @@
 import { Audio } from "expo-av";
 import { useEffect, useState } from "react";
-import { Button, View } from "react-native";
 
-export function SoundPlay() {
+export function useSoundPlay() {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   async function playSound() {
@@ -25,5 +24,5 @@ export function SoundPlay() {
       : undefined;
   }, [sound]);
 
-  return playSound();
+  return { playSound };
 }
