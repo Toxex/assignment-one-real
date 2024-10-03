@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { soundPlay } from "../components/soundPlay";
 import { SafeView } from "../components/safeView";
+import { imageThing } from "../components/imageThing";
 
 export type Item = {
   id: string;
@@ -86,6 +87,7 @@ export function HomeScreen() {
           )}
         />
       </View>
+      {imageThing()}
     </SafeView>
   );
 }
