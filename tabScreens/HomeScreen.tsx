@@ -49,7 +49,6 @@ export function HomeScreen() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(JSON.stringify(data, null, 4));
-
         setItems(data);
         // data.forEach((item: Item) => {
         //   console.log(`Styles for ${item.name}:`, item.styles);

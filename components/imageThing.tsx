@@ -8,7 +8,7 @@ const blurhash =
 export function ImageThing() {
   const { playSound } = useSoundPlay();
   const handleSoundPress = () => {
-    playSound(); // Trigger sound playback when image is pressed
+    playSound();
   };
 
   return (
